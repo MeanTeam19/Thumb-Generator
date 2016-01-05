@@ -1,0 +1,25 @@
+{
+  "name": "thumb-generator",
+  "version": "1.0.0",
+  "description": "A MEAN Social Network",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MeanTeam19/Thumb-Generator.git"
+  },
+  "author": "MeanTeam19",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MeanTeam19/Thumb-Generator/issues"
+  },
+  "homepage": "https://github.com/MeanTeam19/Thumb-Generator#readme",
+  "dependencies": {
+    "express": "^4.13.3",
+    "jade": "^1.11.0",
+    "mongoose": "^4.3.4",
+    "passport": "^0.3.2"
+  }
+}
