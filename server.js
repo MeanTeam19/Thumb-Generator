@@ -1,14 +1,16 @@
-'use strict';
+(function () {
+    'use strict';
 
-let express = require('express'),
-    app = express(),
-    env = process.env.NODE_ENV || 'development',
-    config = require('./server/config/config')[env];
+    let express = require('express'),
+        app = express(),
+        env = process.env.NODE_ENV || 'development',
+        config = require('./server/config/config')[env];
 
-require('./server/config/express')(app, config);
-require('./server/config/mongoose')(config);
-require('./server/config/passport')();
-require('./server/config/routes')(app);
+    require('./server/config/express')(app, config);
+    require('./server/config/mongoose')(config);
+    require('./server/config/passport')();
+    require('./server/config/routes')(app);
 
-app.listen(config.port, () =>
-    console.log(`Server is running on port ${config.port}...`));
+    app.listen(config.port, () =>
+        console.log(`Server is running on port ${config.port}...`));
+} ());
