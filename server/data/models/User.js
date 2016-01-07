@@ -4,12 +4,15 @@
     let mongoose = require('mongoose'),
         encryption = require('../../utilities/encryption'),
         tagRegex = /<[A-Za-z\s]+>.*<\/[A-Za-z\s]+>|<[A-Za-z\s]+\/\s*>/g,
-        mailRegex = /^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$/i;
+        mailRegex = /^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$/i,
+        birthDateRegex = /^([0-9]{2}).([0-9]{2}).([0-9]{4})$/; //07.01.2016
 
     let Schema = mongoose.Schema;
 
     module.exports.init = function () {
-        var userSchema = new Schema({
+        var userSchema = new Schema();
+
+        userSchema.add({
             id: Schema.Types.ObjectId,
             username: {
                 type: String,
@@ -32,7 +35,6 @@
             firstName: {
                 type: String,
                 require: '{PATH} is required',
-                unique: true,
                 maxlength: 30,
                 minlength: 6,
                 validation: function (val) {
@@ -42,7 +44,6 @@
             lastName: {
                 type: String,
                 require: '{PATH} is required',
-                unique: true,
                 maxlength: 30,
                 minlength: 6,
                 validation: function (val) {
@@ -50,18 +51,21 @@
                 }
             },
             birthDate: {
-                type: Date
-                // TODO: Validation?
+                type: Date,
+                validation: function (val) {
+                    return birthDateRegex.test(val);
+                }
             },
             sex: Boolean,
-            friends: {
-                Type: [userSchema]
-            },
-            // posts: {
-            //     Type: [postSchema]
-            // },
+            friends: [userSchema],
+            // posts: [postSchema],
+            // photos: [photoSchema],
             salt: String,
-            hashPass: String
+            hashPass: String,
+            role: {
+                type: String,
+                enum: 'regular admin'.split(' ')
+            },
         });
 
         userSchema.method({
