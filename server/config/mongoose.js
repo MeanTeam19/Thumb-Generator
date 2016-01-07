@@ -1,4 +1,5 @@
 var mongoose = require('mongoose'),
+    PostModel = require('../data/models/Post'),
     UserModel = require('../data/models/User');
 
 module.exports = function(config) {
@@ -18,5 +19,6 @@ module.exports = function(config) {
         console.log('Database error: ' + err);
     });
 
+    PostModel.init();
     UserModel.init();
 };

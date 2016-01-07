@@ -1,10 +1,10 @@
 (function () {
     'use strict';
-    let User = require('mongoose').model('User');
+    let Post = require('mongoose').model('Post');
 
     module.exports = {
         create: function (user, callback) {
-            User.create(user, callback);
+            Post.create(user, callback);
         }
     };
 } ());
