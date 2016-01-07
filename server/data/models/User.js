@@ -5,12 +5,11 @@
         encryption = require('../../utilities/encryption'),
         tagRegex = /<[A-Za-z\s]+>.*<\/[A-Za-z\s]+>|<[A-Za-z\s]+\/\s*>/g,
         mailRegex = /^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$/i,
-        birthDateRegex = /^([0-9]{2}).([0-9]{2}).([0-9]{4})$/; //07.01.2016
-
-    let Schema = mongoose.Schema;
-
+        birthDateRegex = /^([0-9]{2}).([0-9]{2}).([0-9]{4})$/,
+        Schema = mongoose.Schema;
+        
     module.exports.init = function () {
-        var userSchema = new Schema();
+        let userSchema = new Schema();
 
         userSchema.add({
             id: Schema.Types.ObjectId,
@@ -21,7 +20,7 @@
                 maxlength: 30,
                 minlength: 6,
                 validation: function (val) {
-                    return tagRegex.test(val);
+                    return !tagRegex.test(val);
                 }
             },
             email: {
@@ -29,7 +28,7 @@
                 require: '{PATH} is required',
                 unique: true,
                 validation: function (val) {
-                    return mailRegex.test(val);
+                    return !mailRegex.test(val);
                 }
             },
             firstName: {
@@ -38,7 +37,7 @@
                 maxlength: 30,
                 minlength: 6,
                 validation: function (val) {
-                    return tagRegex.test(val);
+                    return !tagRegex.test(val);
                 }
             },
             lastName: {
@@ -47,18 +46,18 @@
                 maxlength: 30,
                 minlength: 6,
                 validation: function (val) {
-                    return tagRegex.test(val);
+                    return !tagRegex.test(val);
                 }
             },
             birthDate: {
                 type: Date,
                 validation: function (val) {
-                    return birthDateRegex.test(val);
+                    return !birthDateRegex.test(val);
                 }
             },
             sex: Boolean,
             friends: [userSchema],
-            // posts: [postSchema],
+            posts: [],
             // photos: [photoSchema],
             salt: String,
             hashPass: String,
@@ -79,6 +78,6 @@
             }
         });
 
-        var User = mongoose.model('User', userSchema);
+        let User = mongoose.model('User', userSchema);
     };
 } ());
