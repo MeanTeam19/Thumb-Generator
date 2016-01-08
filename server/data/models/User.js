@@ -7,7 +7,7 @@
         mailRegex = /^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$/i,
         birthDateRegex = /^([0-9]{2}).([0-9]{2}).([0-9]{4})$/,
         Schema = mongoose.Schema;
-        
+
     module.exports.init = function () {
         let userSchema = new Schema();
 
@@ -57,8 +57,17 @@
             },
             sex: Boolean,
             friends: [userSchema],
-            posts: [],
-            // photos: [photoSchema],
+            posts: [{
+                post: {
+                    required: true,
+                    type: String,
+                    validation: function (val) {
+                        return !tagRegex.test(val);
+                    },
+                    minlength: 6,
+                    maxlength: 500
+                }
+            }],
             salt: String,
             hashPass: String,
             role: {
