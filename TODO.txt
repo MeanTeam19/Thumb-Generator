@@ -1,0 +1,49 @@
+1.Nav:
+	unauth: login, reg
+	auth: username, logout, search
+
+2.Home page: 
+	unauth: 
+		last 5 login .bootstrap
+	auth:
+		page: all last posts
+		side: friends on-click:Chat
+
+3.Login:
+
+4.Register:
+
+5.Profile page: (auth)
+	edit profile
+	user information, chat button
+
+6.Edit profile:
+	marrika => gosho
+
+7.User page: (auth)
+	my info
+
+8.Chat:
+	socketIO
+	
+9.Admin panel:
+	{{everything}}
+
+Client: validation
+
+db:
+	user = {
+		
+	},
+	chatroom = {
+		firstUser,
+		secondUser,
+		message
+	},
+	message = {
+		sender,
+		text
+	}
+
+Server:
+	api/statistics
