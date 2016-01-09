@@ -31,3 +31,6 @@ node_modules
 
 # WebStorm stuff
 .idea
+
+# Client libraries
+public/lib

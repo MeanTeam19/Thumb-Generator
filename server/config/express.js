@@ -5,9 +5,10 @@ var express = require('express'),
     busboy = require('connect-busboy'),
     passport = require('passport');
 
-module.exports = function(app, config) {
+module.exports = function(app, io, config) {
     app.set('view engine', 'jade');
     app.set('views', config.rootPath + '/server/views');
+    app.set('socketio', io);
     app.use(cookieParser());
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({extended: true}));

@@ -1,0 +1,22 @@
+{
+  "name": "thumb-generator",
+  "description": "A MEAN Social Network",
+  "main": "index.js",
+  "authors": [
+    "MeanTeam19"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/MeanTeam19/Thumb-Generator",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/lib",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.6"
+  }
+}
