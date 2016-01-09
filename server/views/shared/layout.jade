@@ -1,0 +1,71 @@
+doctype html
+html(lang='en')
+    head
+        meta(charset='utf-8')
+        meta(http-equiv='X-UA-Compatible', content='IE=edge')
+        meta(name='viewport', content='width=device-width, initial-scale=1')
+        // The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags
+        meta(name='description', content='The modern social network')
+        meta(name='author', content='MeanTeam19')
+        link(rel='icon', href='favicon.ico')
+        title Thumb Generator
+        // Bootstrap core CSS
+        link(href='lib/bootstrap/dist/css/bootstrap.min.css', rel='stylesheet')
+        // IE10 viewport hack for Surface/desktop Windows 8 bug
+        link(href='assets/css/ie10-viewport-bug-workaround.css', rel='stylesheet')
+        script(src='assets/js/ie-emulation-modes-warning.js')
+        // HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries
+        //if lt IE 9
+          script(src='https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js')
+          script(src='https://oss.maxcdn.com/respond/1.4.2/respond.min.js')
+        // Custom styles for this template
+        link(href='css/carousel.css', rel='stylesheet')
+        link(href='css/fix-for-static-navbar.css', rel='stylesheet')
+    //
+      NAVBAR
+      ==================================================
+    body
+        .navbar-wrapper
+            .container
+                nav.navbar.navbar-inverse.navbar-static-top
+                    .container
+                        .navbar-header
+                            button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='#navbar', aria-expanded='false', aria-controls='navbar')
+                                span.sr-only Toggle navigation
+                                span.icon-bar
+                                span.icon-bar
+                                span.icon-bar
+                            a.navbar-brand(href='/') Thumb Generator
+                        #navbar.navbar-collapse.collapse
+                            ul.nav.navbar-nav
+                                li.active
+                                    a(href='/') Home
+                                li
+                                    a(href='/about') About
+                                li
+                                    a(href='/contact') Contact
+                                li.dropdown
+                                    a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
+                                        | Dropdown
+                                        span.caret
+                                    ul.dropdown-menu
+                                        li
+                                            a(href='/') Action
+                                        li
+                                            a(href='/') Another action
+                                        li
+                                            a(href='/') Something else here
+                                        li.divider(role='separator')
+                                        li.dropdown-header Nav header
+                                        li
+                                            a(href='/') Separated link
+                                        li
+                                            a(href='/') One more separated link
+                                li
+                                    if (currentUser)
+                                        a(href="/logout") Logout
+                                    else
+                                        a(href="/login") Login
+
+        block main-content
+        include footer
