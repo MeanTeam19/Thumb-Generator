@@ -5,6 +5,11 @@ var CONTROLLER_NAME = 'users';
 
 module.exports = {
     getRegister: function(req, res, next) {
+        if (req.user) {
+            res.redirect('/');
+            return;
+        }
+
         res.render(CONTROLLER_NAME + '/register')
     },
     postRegister: function(req, res, next) {
@@ -23,19 +28,25 @@ module.exports = {
                     return;
                 }
 
-                req.logIn(user, function(err) {
+                req.logIn(user, function (err) {
                     if (err) {
                         res.status(400);
-                        return res.send({reason: err.toString()}); // TODO
+                        req.session.error = err.toString();
+                        res.redirect('/login');
                     }
                     else {
                         res.redirect('/');
                     }
-                })
+                });
             });
         }
     },
     getLogin: function(req, res, next) {
+        if (req.user) {
+            res.redirect('/');
+            return;
+        }
+
         res.render(CONTROLLER_NAME + '/login');
     }
 };
