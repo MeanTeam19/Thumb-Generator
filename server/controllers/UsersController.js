@@ -24,7 +24,13 @@ module.exports = {
             newUserData.hashPass = encryption.generateHashedPassword(newUserData.salt, newUserData.password);
             users.create(newUserData, function(err, user) {
                 if (err) {
-                    console.log('Failed to register new user: ' + err);
+                    if (err.code === 11000) {
+                        req.session.error = 'This user is taken :(';
+                    } else {
+                        req.session.error = 'We couldn\'t register you... Please, try again :)';
+                    }
+
+                    res.redirect('/register');
                     return;
                 }
 

@@ -17,8 +17,7 @@
                 type: String,
                 require: '{PATH} is required',
                 unique: true,
-                maxlength: 30,
-                minlength: 6,
+                minlength: 2,
                 validation: function (val) {
                     return !tagRegex.test(val);
                 }
@@ -34,8 +33,7 @@
             firstName: {
                 type: String,
                 require: '{PATH} is required',
-                maxlength: 30,
-                minlength: 6,
+                minlength: 2,
                 validation: function (val) {
                     return !tagRegex.test(val);
                 }
@@ -43,8 +41,7 @@
             lastName: {
                 type: String,
                 require: '{PATH} is required',
-                maxlength: 30,
-                minlength: 6,
+                minlength: 2,
                 validation: function (val) {
                     return !tagRegex.test(val);
                 }

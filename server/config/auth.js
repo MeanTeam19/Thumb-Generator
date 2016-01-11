@@ -5,7 +5,9 @@ module.exports = {
         var auth = passport.authenticate('local', function (err, user) {
             if (err) return next(err);
             if (!user) {
-                res.send({success: false});
+                req.session.error = 'Invalid username or password!';
+                res.redirect('/login');
+                return;
             }
 
             req.logIn(user, function (err) {
