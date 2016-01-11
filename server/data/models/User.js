@@ -12,7 +12,6 @@
         let userSchema = new Schema();
 
         userSchema.add({
-            id: Schema.Types.ObjectId,
             username: {
                 type: String,
                 require: '{PATH} is required',
@@ -53,7 +52,7 @@
                 }
             },
             sex: Boolean,
-            friends: [userSchema],
+            friends: [],
             posts: [{
                 post: {
                     required: true,

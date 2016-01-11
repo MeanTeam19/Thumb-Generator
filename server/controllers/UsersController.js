@@ -24,6 +24,7 @@ module.exports = {
             newUserData.hashPass = encryption.generateHashedPassword(newUserData.salt, newUserData.password);
             users.create(newUserData, function(err, user) {
                 if (err) {
+                    console.log(err);
                     if (err.code === 11000) {
                         req.session.error = 'This user is taken :(';
                     } else {
