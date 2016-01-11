@@ -8,7 +8,11 @@ module.exports = function(app) {
     app.get('/login', controllers.users.getLogin);
     app.post('/login', auth.login);
     app.get('/logout', auth.logout);
-
+    
+    app.get('/admin', controllers.admin.getLogin);
+    app.get('/admin-panel', auth.isInRole('admin'), controllers.admin.adminPanel);
+    // app.post('/admin', controllers.admin.postRegister);
+    
     app.get('/', function(req, res) {
         res.render('index', {currentUser: req.user});
     });
