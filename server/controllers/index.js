@@ -1,10 +1,10 @@
-var usersController = require('./users-controller'),
-  statisticsController = require('./statistics-controller');
-var AdminController = require('./AdminController');
+'use strict';
+let usersController = require('./users-controller'),
+    statisticsController = require('./statistics-controller'),
+    adminController = require('./admin-controller');
 
 module.exports = {
-    users: UsersController,
-  users: usersController,
-  statistics: statisticsController
-    admin: AdminController
+    users: usersController,
+    statistics: statisticsController,
+    admin: adminController
 };
