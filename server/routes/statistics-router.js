@@ -5,7 +5,7 @@ var express = require('express'),
 router
   .get('/', function () {
     console.log('asd')
-  }); //controllers.statistics.get
+  }); //controllers.statistics.getStatistics
 
 module.exports = function (app) {
   app.use('/api/statistics', router);

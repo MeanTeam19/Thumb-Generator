@@ -1,7 +1,13 @@
+'use strict';
+
 var statistics = require('../data/statistics');
 
 module.exports = {
-  get: function (req, res, next) {
-    return statistics.get;
+  getStatistics: function (req, res, next) {
+    res.status(200)
+      .send({
+        result: statistics.get
+      });
+    res.end();
   }
 }
