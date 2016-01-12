@@ -13,6 +13,7 @@ html(lang='en')
         link(href='lib/bootstrap/dist/css/bootstrap.min.css', rel='stylesheet')
         // IE10 viewport hack for Surface/desktop Windows 8 bug
         link(href='assets/css/ie10-viewport-bug-workaround.css', rel='stylesheet')
+        link(href='css/main.css', rel='stylesheet')
         script(src='assets/js/ie-emulation-modes-warning.js')
         // HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries
         //if lt IE 9
@@ -63,6 +64,9 @@ html(lang='en')
                                             a(href='/') Separated link
                                         li
                                             a(href='/') One more separated link
+                             ul.nav.navbar-nav.right
+                                li
+                                    a(href="/profile") MyProfile
                                 li
                                     if (currentUser)
                                         a(href="/logout") Logout
