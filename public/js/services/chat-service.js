@@ -1,12 +1,9 @@
 (function () {
     'use strict';
 
-    angular.module('ThumbGenerator.services').service('chat', ['Authentication', '$location', '$timeout', function (Authentication, $location, $timeout) {
-            if (Authentication.user) {
-                this.socket = io();
-            } else {
-                $location.path('/');
-            }
+    angular.module('ThumbGenerator.services').service('chat', ['$location', '$timeout',
+        function ($location, $timeout) {
+            this.socket = io();
 
             this.on = function (eventName, callback) {
                 if (this.socket) {

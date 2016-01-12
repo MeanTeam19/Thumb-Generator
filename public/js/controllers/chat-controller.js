@@ -1,26 +1,24 @@
 (function () {
     'use strict';
 
-    angular.module('ThumbGenerator.controllers').controller('ChatController', ['chat', function (chat) {
-        var vm = this;
+    angular.module('ThumbGenerator.controllers').controller('ChatController', ['$scope', 'chat', function ($scope, chat) {
 
-        vm.messages = [];
-        console.log(vm);
+        $scope.messages = [];
         chat.on('chatMessage', function (message) {
-            vm.messages.push(message);
+            $scope.messages.push(message);
         });
 
-        vm.sendMessage = function () {
+        $scope.sendMessage = function () {
             var message = {
-                text: vm.messageText
+                text: $scope.messageText
             };
 
             chat.emit('chatMessage', message);
 
-            vm.messageText = '';
+            $scope.messageText = '';
         };
 
-        vm.$on('$destroy', function () {
+        $scope.$on('$destroy', function () {
             chat.removeListener('chatMessage');
         });
     }]);
