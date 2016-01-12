@@ -4,7 +4,7 @@ var users = require('../data/users');
 var CONTROLLER_NAME = 'users';
 
 module.exports = {
-    getRegister: function(req, res, next) {
+    getRegister: function (req, res, next) {
         if (req.user) {
             res.redirect('/');
             return;
@@ -12,7 +12,7 @@ module.exports = {
 
         res.render(CONTROLLER_NAME + '/register')
     },
-    postRegister: function(req, res, next) {
+    postRegister: function (req, res, next) {
         var newUserData = req.body;
 
         if (newUserData.password != newUserData.confirmPassword) {
@@ -22,7 +22,7 @@ module.exports = {
         else {
             newUserData.salt = encryption.generateSalt();
             newUserData.hashPass = encryption.generateHashedPassword(newUserData.salt, newUserData.password);
-            users.create(newUserData, function(err, user) {
+            users.create(newUserData, function (err, user) {
                 if (err) {
                     console.log(err);
                     if (err.code === 11000) {
@@ -48,7 +48,7 @@ module.exports = {
             });
         }
     },
-    getLogin: function(req, res, next) {
+    getLogin: function (req, res, next) {
         if (req.user) {
             res.redirect('/');
             return;
