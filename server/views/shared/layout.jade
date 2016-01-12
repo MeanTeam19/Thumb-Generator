@@ -65,12 +65,13 @@ html(lang='en')
                                         li
                                             a(href='/') One more separated link
                              ul.nav.navbar-nav.right
-                                li
-                                    a(href="/profile") MyProfile
-                                li
-                                    if (currentUser)
+                                if (currentUser)
+                                    li
+                                        a(href="/profile") MyProfile
+                                    li
                                         a(href="/logout") Logout
-                                    else
+                                else
+                                    li
                                         a(href="/login") Login
 
         block main-content

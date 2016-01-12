@@ -5,7 +5,7 @@ var CONTROLLER_NAME = 'profile';
 
 module.exports = {
     getProfile: function (req, res, next) {
-        res.render(CONTROLLER_NAME + '/profile')
+        res.render(CONTROLLER_NAME + '/profile', { currentUser: req.user })
     },
     getUpdateUser: function (req, res, next) {
         res.render(CONTROLLER_NAME + '/update')
