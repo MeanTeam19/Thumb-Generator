@@ -7,7 +7,7 @@ router
     .get('/register', controllers.users.getRegister)
     .post('/register', controllers.users.postRegister)
     .get('/login', controllers.users.getLogin)
-    .post('/login', auth.login)
+    .post('/login', auth.login, controllers.users.getLogin)
     .get('/logout', auth.logout)
     .get('/admin', controllers.admin.getLogin)
     .get('/admin-panel', auth.isInRole('admin'), controllers.admin.getAdminPanel)

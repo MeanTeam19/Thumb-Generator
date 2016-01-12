@@ -41,11 +41,13 @@ module.exports = {
     },
     isInRole: function (role) {
         return function (req, res, next) {
-            if (req.isAuthenticated() && req.user.roles.indexOf(role) !== -1) {
+            if (req.isAuthenticated() && req.user.role.indexOf(role) !== -1) {
+                
+                console.log('Is in role.');
                 next();
             } else {
                 res.status(403)
-                    .end();
+                    .end('<h1>Unauthorized</h1>');
             }
         }
     }
