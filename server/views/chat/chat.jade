@@ -1,0 +1,21 @@
+extends ../shared/layout
+
+block main-content
+    section.container.margin-top-fix(ng-cloack ng-controller='ChatController as vm')
+        div(ng-repeat='message in vm.messages', ng-switch='message.type')
+            strong(ng-switch-when='status')
+                span(ng-bind="message.created | date:'mediumTime'")
+                span(ng-bind='message.username')
+                span is
+                span(ng-bind='message.text')
+            span(ng-switch-default='')
+                span(ng-bind="message.created | date:'mediumTime'")
+                span(ng-bind='message.username')
+                span :
+                span(ng-bind='message.text')
+        form(ng-submit='vm.sendMessage();')
+            input(type='text', ng-model='vm.messageText')
+            input(type='submit')
+    script(src="/socket.io/socket.io.js")
+    script(src="js/services/chat-service.js")
+    script(src="js/controllers/chat-controller.js")
