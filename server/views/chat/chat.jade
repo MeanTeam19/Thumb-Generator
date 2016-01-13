@@ -1,21 +1,34 @@
 extends ../shared/layout
 
 block main-content
-    .container.margin-top-fix(ng-app='ThumbGenerator' ng-cloack ng-controller='ChatController')
-        div(ng-repeat='message in messages', ng-switch='message.type')
-            strong(ng-switch-when='status')
-                span(ng-bind="message.created | date:'mediumTime'")
-                span(ng-bind='message.username')
-                span is
-                span(ng-bind='message.text')
-            span(ng-switch-default='')
-                span(ng-bind="message.created | date:'mediumTime'")
-                span(ng-bind='message.username')
-                span :
-                span(ng-bind='message.text')
-        form(ng-submit='sendMessage();')
-            input(type='text', ng-model='messageText')
-            input(type='submit')
+    link(href="css/chat.css" rel="stylesheet")
+    .container.margin-top-fix(ng-app="ThumbGenerator" ng-cloack ng-controller="ChatController")
+        .row
+            .col-xs-12.col-sm-8.col-sm-offset-2.col-md-6.col-md-offset-3
+                .panel.panel-success
+                    .panel-heading
+                        span.glyphicon.glyphicon-comment Chat
+                    .panel-body(scroll-glue)
+                        ul.chat
+                            li.clearfix(ng-repeat="message in messages", ng-class="username === message.username ? 'right' : 'left'")
+                                span.chat-img(ng-if="message.type === 'message'", ng-class="username == message.username ? 'pull-right' : 'pull-left'")
+                                    img.img-circle(ng-if="username !== message.username" src='http://placehold.it/50/55C1E7/fff&text=U', alt='Other Avatar')
+                                    img.img-circle(ng-if="username === message.username" src='http://placehold.it/50/FA6F57/fff&text=ME', alt='My Avatar')
+                                .chat-body.clearfix
+                                    .header
+                                        strong.primary-font(ng-if="username !== message.username") {{message.username}}
+                                        small.pull-right.text-muted(ng-if="username !== message.username")
+                                            span.glyphicon.glyphicon-time {{message.created | date: 'H:mm:ss'}}
+                                        small.text-muted(ng-if="username === message.username")
+                                            span.glyphicon.glyphicon-time {{message.created | date: 'H:mm:ss'}}
+                                        strong.pull-right.primary-font(ng-if="username === message.username") {{message.username}}
+                                    p(ng-class="message.type === 'status' ? (message.text === 'connected' ? 'bg-success' : 'bg-warning') : ''") {{message.text}}
+                    .panel-footer
+                        form.input-group(ng-submit='sendMessage();')
+                            input.form-control.input-sm(type='text', placeholder='Enter a message here ...' ng-model="messageText")
+                            span.input-group-btn
+                                input.btn.btn-success.btn-sm(type="submit" value="Send" required="required")
+
     script(src="/socket.io/socket.io.js")
     script(src="js/services/chat-service.js")
     script(src="js/controllers/chat-controller.js")

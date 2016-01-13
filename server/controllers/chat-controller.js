@@ -1,4 +1,6 @@
 module.exports = function(io, socket) {
+    socket.emit('username', socket.request.user.username);
+
     io.emit('chatMessage', {
         type: 'status',
         text: 'connected',
