@@ -1,3 +1,12 @@
 extends ../shared/layout
 
-h1 Profile
+block main-content
+    .container(ng-app="ThumbGenerator" ng-cloak ng-controller="PostsController as vm")
+        .row
+            h1 Hello, #{currentUser.firstName}
+        .row
+            .col-md-5.col-md-offset-5
+                label(for="first-name") Add new post {{vm.asd}}
+                textarea(id="first-name" class="form-control" type="text" name="postText" placeholder="How is your day gong?" ng-model="vm.post.text" required="required")
+                .text-danger(ng-show="vm.isPostMoreThan(500)") Your post is too long. Max 500 symbols.
+                

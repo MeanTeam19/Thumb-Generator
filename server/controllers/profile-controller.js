@@ -5,6 +5,11 @@ var CONTROLLER_NAME = 'profile';
 
 module.exports = {
     getProfile: function (req, res, next) {
+        if (!req.user) {
+            res.redirect('/login');
+            return;
+        }
+        
         res.render(CONTROLLER_NAME + '/profile', { currentUser: req.user })
     },
     getUpdateUser: function (req, res, next) {

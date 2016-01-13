@@ -67,10 +67,12 @@ html(lang='en')
                              ul.nav.navbar-nav.right
                                 if (currentUser)
                                     li
-                                        a(href="/profile") MyProfile
+                                        a(href="/profile") #{currentUser.username}
                                     li
                                         a(href="/logout") Logout
                                 else
+                                    li
+                                        a(href="/register") Register
                                     li
                                         a(href="/login") Login
 
