@@ -12,8 +12,8 @@ block main-content
                         ul.chat
                             li.clearfix.animate-repeat(ng-repeat="message in messages", ng-class="username === message.username ? 'right' : 'left'")
                                 span.chat-img(ng-if="message.type === 'message'", ng-class="username == message.username ? 'pull-right' : 'pull-left'")
-                                    img.img-circle(ng-if="username !== message.username" src='http://placehold.it/50/55C1E7/fff&text=U', alt='Other Avatar')
-                                    img.img-circle(ng-if="username === message.username" src='http://placehold.it/50/FA6F57/fff&text=ME', alt='My Avatar')
+                                    img.img-circle(ng-if="username !== message.username" src='imgs/u.png', alt='U')
+                                    img.img-circle(ng-if="username === message.username" src='imgs/me.png', alt='ME')
                                 .chat-body.clearfix
                                     .header
                                         strong.primary-font(ng-if="username !== message.username") {{message.username}}
