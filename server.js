@@ -11,6 +11,7 @@
     require('./server/config/mongoose')(config);
     require('./server/config/passport')();
     require('./server/routes/routes')(app);
+    require('./server/config/express')(app, io, config);
 
     server.listen(config.port, () =>
         console.log(`Server is running on port ${config.port}...`));
