@@ -2,7 +2,7 @@ extends ../shared/layout
 
             
 block main-content
-    .container(ng-app="ThumbGenerator" ng-cloak ng-controller="PostsController as vm")
+    .container.black(ng-app="ThumbGenerator" ng-cloak ng-controller="PostsController as vm")
         .row
             h1 Hello, #{currentUser.firstName}
         .row
@@ -17,7 +17,11 @@ block main-content
             .col-md-5.col-md-offset-1
                 form(name="post" method="post" action="/profile")
                     label(for="first-name") Add new post
-                    textarea(id="first-name" class="form-control" type="text" name="postText" placeholder="How is your day gong?" ng-model="vm.post.text" required="required")
+                    input.hidden(type="text" name="id" value="#{currentUser.id}")
+                    textarea(id="first-name" class="form-control" type="text" name="post" placeholder="How is your day going?" ng-model="vm.post.text" required="required")
                     .text-danger(ng-show="vm.isPostMoreThan(500)") Your post is too long. Max 500 symbols.
                     input(type="submit" class="btn btn-primary" value="Post" ng-disabled="!vm.isPostMoreThan(0) || vm.isPostMoreThan(500)")
+                    
+            .row
+                .col-md-5.col-md-offset-1 #{currentUser}
         script(src="js/controllers/posts-controller.js")

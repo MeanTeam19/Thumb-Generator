@@ -20,3 +20,11 @@ body {
 .navbar {
     border-radius: 0 !important;
 }
+
+.black{
+    color: #000 !important;
+}
+
+.hidden{
+    display: none;
+}

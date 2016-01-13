@@ -55,8 +55,8 @@
             friends: [],
             posts: [{
                 post: {
-                    required: true,
                     type: String,
+                    required: true,
                     validation: function (val) {
                         return !tagRegex.test(val);
                     },

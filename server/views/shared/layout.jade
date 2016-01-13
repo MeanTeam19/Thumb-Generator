@@ -45,10 +45,7 @@ html(lang='en')
                         #navbar.navbar-collapse.collapse
                             ul.nav.navbar-nav
                                 li.active
-                                    if(currentUser)
-                                        a(href='/') #{currentUser}
-                                    else
-                                        a(href='/') Home
+                                    a(href='/') Home
                                 li
                                     a(href='/about') About
                                 if (currentUser)
