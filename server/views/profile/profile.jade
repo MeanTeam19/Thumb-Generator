@@ -1,13 +1,23 @@
 extends ../shared/layout
 
+            
 block main-content
     .container(ng-app="ThumbGenerator" ng-cloak ng-controller="PostsController as vm")
         .row
             h1 Hello, #{currentUser.firstName}
         .row
-            .col-md-5.col-md-offset-5
-                label(for="first-name") Add new post
-                textarea(id="first-name" class="form-control" type="text" name="postText" placeholder="How is your day gong?" ng-model="vm.post.text" required="required")
-                .text-danger(ng-show="vm.isPostMoreThan(500)") Your post is too long. Max 500 symbols.
-                input(type="submit" class="btn btn-primary" value="Post" ng-disabled="!vm.isPostMoreThan(0) || vm.isPostMoreThan(500)")
-    script(src="js/controllers/posts-controller.js")
+            .col-md-4
+                h3 Personal Information
+                p <strong>Name:</strong> #{currentUser.firstName} #{currentUser.lastName}
+                p <strong>Username:</strong> #{currentUser.username}
+                p <strong>Email:</strong> #{currentUser.email}
+                p <strong>Date of Birth:</strong> #{currentUser.birthDate}
+                p <strong>Gender:</strong> #{currentUser.sex}
+                a(href="/profile/update") Update personal Information
+            .col-md-5.col-md-offset-1
+                form(name="post" method="post" action="/profile")
+                    label(for="first-name") Add new post
+                    textarea(id="first-name" class="form-control" type="text" name="postText" placeholder="How is your day gong?" ng-model="vm.post.text" required="required")
+                    .text-danger(ng-show="vm.isPostMoreThan(500)") Your post is too long. Max 500 symbols.
+                    input(type="submit" class="btn btn-primary" value="Post" ng-disabled="!vm.isPostMoreThan(0) || vm.isPostMoreThan(500)")
+        script(src="js/controllers/posts-controller.js")

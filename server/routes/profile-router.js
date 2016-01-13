@@ -4,6 +4,7 @@ var express = require('express'),
 
 router
     .get('/', controllers.profile.getProfile)
+    .post('/', controllers.posts.post)
     .get('/update', controllers.profile.getUpdateUser)
     .post('/update', controllers.profile.updateUser)
     .get('/:username', controllers.profile.getUserDetails);

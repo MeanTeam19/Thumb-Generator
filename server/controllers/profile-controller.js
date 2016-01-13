@@ -9,7 +9,7 @@ module.exports = {
             res.redirect('/login');
             return;
         }
-        
+
         res.render(CONTROLLER_NAME + '/profile', { currentUser: req.user })
     },
     getUpdateUser: function (req, res, next) {
@@ -43,8 +43,9 @@ module.exports = {
             })
     },
     getUserDetails: function (req, res) {
+        var username = req.params.username;
         User
-            .find({ username: req.params.username })
+            .find({ username: username })
             .exec(function (err, user) {
                 if (err) {
                     console.log('Get all users failed: ' + err);
@@ -54,7 +55,7 @@ module.exports = {
 
     },
     deleteUser: function (req, res) {
-        if (req.user.roles.indexOf('admin') > -1) {
+        if (req.user.roles.indexOf('admin') >= 0) {
             User.remove({ _id: req.params.id }, function (err, user) {
                 if (err) {
                     console.log('Delete user by id failed: ' + err);
