@@ -2,6 +2,6 @@
     'use strict';
 
     angular.module('ThumbGenerator.services', []);
-    angular.module('ThumbGenerator.controllers', ['ThumbGenerator.services', 'luegg.directives']);
-    angular.module('ThumbGenerator', ['ThumbGenerator.services', 'ThumbGenerator.controllers']);
+    angular.module('ThumbGenerator.controllers', ['luegg.directives', 'ThumbGenerator.services']);
+    angular.module('ThumbGenerator', ['ngAnimate', 'ThumbGenerator.services', 'ThumbGenerator.controllers']);
 }());
