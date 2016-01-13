@@ -60,8 +60,11 @@
                     validation: function (val) {
                         return !tagRegex.test(val);
                     },
-                    minlength: 6,
+                    minlength: 2,
                     maxlength: 500
+                },
+                date: {
+                    type: Date
                 }
             }],
             salt: String,

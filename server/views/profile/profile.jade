@@ -17,8 +17,7 @@ block main-content
             .col-md-5.col-md-offset-1
                 form(name="post" method="post" action="/profile")
                     label(for="first-name") Add new post
-                    input.hidden(type="text" name="id" value="#{currentUser.id}")
-                    textarea(id="first-name" class="form-control" type="text" name="post" placeholder="How is your day going?" ng-model="vm.post.text" required="required")
+                    textarea(id="first-name" class="form-control" type="text" name="post" placeholder="Write something useless or uninteresting here. For example how your day is going..." ng-model="vm.post.text" required="required")
                     .text-danger(ng-show="vm.isPostMoreThan(500)") Your post is too long. Max 500 symbols.
                     input(type="submit" class="btn btn-primary" value="Post" ng-disabled="!vm.isPostMoreThan(0) || vm.isPostMoreThan(500)")
                     
