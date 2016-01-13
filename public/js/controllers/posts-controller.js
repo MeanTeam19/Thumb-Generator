@@ -6,15 +6,11 @@
     function posts() {
         var vm = this;
         vm.asd = 'qwe'
-        
-        vm.isPostMoreThan = function(len) {
-            var text = vm.post.text || '';
+
+        vm.isPostMoreThan = function (len) {
+            var post = vm.post || {};
+            var text = post.text || '';
             return text.length > len;
-        }
-        
-        vm.isPostLongerThan = function(len) {
-            var text = vm.post.text || '';
-            return text.length < len;
         }
     }
 } ());

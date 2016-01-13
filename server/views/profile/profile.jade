@@ -6,7 +6,8 @@ block main-content
             h1 Hello, #{currentUser.firstName}
         .row
             .col-md-5.col-md-offset-5
-                label(for="first-name") Add new post {{vm.asd}}
+                label(for="first-name") Add new post
                 textarea(id="first-name" class="form-control" type="text" name="postText" placeholder="How is your day gong?" ng-model="vm.post.text" required="required")
                 .text-danger(ng-show="vm.isPostMoreThan(500)") Your post is too long. Max 500 symbols.
-                
+                input(type="submit" class="btn btn-primary" value="Post" ng-disabled="!vm.isPostMoreThan(0) || vm.isPostMoreThan(500)")
+    script(src="js/controllers/posts-controller.js")
