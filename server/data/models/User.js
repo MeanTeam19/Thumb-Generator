@@ -64,6 +64,19 @@
                     maxlength: 500
                 }
             }],
+            messages:[{
+                text: {
+                    type: String,
+                    required: true
+                },
+                toUsername: {
+                    type: String
+                },
+                created: {
+                    type: Date,
+                    default: Date.now
+                }
+            }],
             salt: String,
             hashPass: String,
             role: {

@@ -8,6 +8,11 @@
         });
 
         $scope.messages = [];
+
+        chat.on('oldMessages', function (oldMessages) {
+            $scope.messages = oldMessages;
+        });
+
         chat.on('chatMessage', function (message) {
             $scope.messages.push(message);
         });

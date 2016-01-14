@@ -1,5 +1,12 @@
+'use strict';
+let users = require('../data/users');
+
 module.exports = function(io, socket) {
     socket.emit('username', socket.request.user.username);
+
+    users.getAllPublicMessages(function (err, oldMessages) {
+        socket.emit('oldMessages', oldMessages)
+    });
 
     io.emit('chatMessage', {
         type: 'status',
@@ -12,6 +19,8 @@ module.exports = function(io, socket) {
         message.type = 'message';
         message.created = Date.now();
         message.username = socket.request.user.username;
+        socket.request.user.messages.push(message);
+        socket.request.user.save();
 
         io.emit('chatMessage', message);
     });
