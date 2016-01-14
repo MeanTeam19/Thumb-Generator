@@ -14,6 +14,7 @@
         userSchema.add({
             username: {
                 type: String,
+                required: true,
                 require: '{PATH} is required',
                 unique: true,
                 minlength: 2,
@@ -23,7 +24,7 @@
             },
             email: {
                 type: String,
-                require: '{PATH} is required',
+                required: true,
                 unique: true,
                 validation: function (val) {
                     return !mailRegex.test(val);
@@ -31,7 +32,6 @@
             },
             firstName: {
                 type: String,
-                require: '{PATH} is required',
                 minlength: 2,
                 validation: function (val) {
                     return !tagRegex.test(val);
@@ -51,7 +51,8 @@
                     return !birthDateRegex.test(val);
                 }
             },
-            sex: Boolean,
+            registrationDate: Date,
+            sex: String,
             friends: [],
             posts: [{
                 post: {
@@ -67,13 +68,16 @@
             salt: String,
             hashPass: String,
             role: {
-                type: String,
-                enum: 'regular admin'.split(' ')
+                type: [String],
+                default: ['standard']
             },
         });
 
         userSchema.method({
             authenticate: function (password) {
+
+                console.log(encryption.generateHashedPassword(this.salt, password));
+                console.log(this);
                 if (encryption.generateHashedPassword(this.salt, password) === this.hashPass) {
                     return true;
                 }
