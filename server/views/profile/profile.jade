@@ -22,5 +22,7 @@ block main-content
                     input(type="submit" class="btn btn-primary" value="Post" ng-disabled="!vm.isPostMoreThan(0) || vm.isPostMoreThan(500)")
                     
             .row
-                .col-md-5.col-md-offset-1 #{currentUser}
+                .col-md-5.col-md-offset-1
+                    each post in currentUser.posts
+                        | #{post}
         script(src="js/controllers/posts-controller.js")
