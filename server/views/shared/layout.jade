@@ -27,8 +27,11 @@ html(lang='en')
         script(src="http://kendo.cdn.telerik.com/2015.3.1111/js/kendo.all.min.js")
         link(href='css/carousel.css', rel='stylesheet')
         link(href='css/fix-for-static-navbar.css', rel='stylesheet')
-        script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js')
+        link(href='css/background.css', rel='stylesheet')
+        script(src='lib/angular/angular.min.js')
+        script(src='lib/angular-animate/angular-animate.min.js')
         script(src='js/app.js')
+        script(src='lib/angular-scroll-glue/src/scrollglue.js')
     //
       NAVBAR
       ==================================================
@@ -47,11 +50,15 @@ html(lang='en')
                         #navbar.navbar-collapse.collapse
                             ul.nav.navbar-nav
                                 li.active
-                                    a(href='/') Home
+                                    if(currentUser)
+                                        a(href='/') #{currentUser}
+                                    else
+                                        a(href='/') Home
                                 li
                                     a(href='/about') About
-                                li
-                                    a(href='/contact') Contact
+                                if (currentUser)
+                                    li
+                                        a(href='/chat') Chat
                                 li.dropdown
                                     a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
                                         | Dropdown
