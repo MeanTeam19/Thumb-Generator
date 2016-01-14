@@ -1,0 +1,25 @@
+extends ../shared/layout
+
+            
+block main-content
+    .container.margin-top-fix.black(ng-app="ThumbGenerator" ng-cloak ng-controller="PostsController as vm")
+        .row
+                h3 Personal Information for #{data.user.username}
+                form.col-xs-12.col-sm-8.col-sm-offset-2.col-md-6.col-md-offset-3.col-lg-4.col-lg-offset-4(name="user-info", method="post", action="/update-user")
+                    .form-group
+                        label(for="first-name") First name
+                        input(id="first-name" class="form-control" type="text" name="firstName" value="#{data.user.firstName || 'Not Specified'}" required="required")
+                    .form-group
+                        label(for="last-name") Last name
+                        input(id="last-name" class="form-control" type="text" name="lastName" value="#{data.user.lastName || 'Not Specified'}" required="required")
+                    .form-group
+                        label(for="email") Email
+                        input(id="email" class="form-control" type="email" name="email" value="#{data.user.email}" required="required")
+                        input(type="hidden" name="username" value="#{data.user.username}")
+                    .checkbox
+                        label
+                            input(type="checkbox" name="isAdmin")
+                            | Is administrator?
+                    .form-group
+                        input(type="submit" class="btn btn-lg" value="Edit")
+            .col-md-5.col-md-offset-1

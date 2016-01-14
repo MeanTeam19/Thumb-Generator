@@ -9,7 +9,7 @@ router.get('/chat', function (req, res, next) {
         return;
     }
 
-    res.render('chat/chat', { currentUser: req.user.username });
+    res.render('chat/chat', { currentUser: req.user });
 });
 
 module.exports = function (app) {
