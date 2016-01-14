@@ -2,4 +2,63 @@ extends ../shared/layout
 
 block main-content
     .container
-        p Peshoooo
+        .row
+            #myGrid.margin-top-fix
+            
+            script.
+                $(document).ready(function(){
+                    var data = !{JSON.stringify(data.result)};
+                    var dataSource = new kendo.data.DataSource({
+                        pageSize: 6,
+                        autoSync: true,
+                        data: data,
+                        schema: {
+                            model: {
+                                fields: {
+                                    _id:{type:"string"},
+                                    username:{type:"string"},
+                                    email:{type:"string"},
+                                    firstName:{type:"string"},
+                                    lastName:{type:"string"},
+                                    birthDate:{type:"string"},
+                                    sex:{type:"string"},
+                                    friends:{type:"array"},
+                                    role:{type:"array"},
+                                    registrationDate:{type:"date"}
+                                    }
+                                }
+                            }
+                });
+            
+                <!-- Define the grid and attributes -->           
+                var element = $("#myGrid").kendoGrid({
+                            dataSource:dataSource,
+                            pageSize: 6,
+                            serverPaging: true,
+                            serverSorting: true,
+                            databind:true,                                                 
+                            height: 450,
+                            sortable: true,
+                            pageable: true,
+                            selectable: true,
+                            filterable: true,
+                            resizable: true,
+                            columns: [
+                                { field:"_id",title:"id",width: 210},
+                                {field:"friends.length",title:"Number Of Friends",width:50},
+                                {field:"username",title:"Username"},
+                                {field:"firstName", title:"First name"},
+                                {field:"lastName", title:"Last name"},
+                                {field:"sex || 'Not specified'", title:"sex",width:100},
+                                {field:"registrationDate", title:"Registered on:"},
+                                {field:"role.indexOf('admin') == 1 || role.indexOf('admin') == 0 ? 'Administrator' : 'Client'",
+                                    title:"Administrative rights", width:200},
+                                {command: [{name: "Edit", click: editDetails, data: "_id"}]}
+                                ]
+                            });
+                        });
+                var editDetails = function (e) {
+                        var root =  window.location.href.slice(0, window.location.href.lastIndexOf('/')),
+                            tr = $(e.currentTarget).closest("tr");
+                        window.location.replace(root + '/' + $("#myGrid").data("kendoGrid").dataItem(tr)._id);
+                    }

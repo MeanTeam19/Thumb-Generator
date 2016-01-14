@@ -5,7 +5,33 @@ var CONTROLLER_NAME = 'admin';
 
 module.exports = {
     getAdminPanel: function (req, res, next) {
-        res.render(CONTROLLER_NAME + '/admin-panel');
+        users.getAll().then(function (result) {
+            res.render(CONTROLLER_NAME + '/admin-panel', { data: { result: result } });
+        });
+
+    },
+
+    getAllUsers: function (req, res, next) {
+        users.getAll().then(function (result) {
+            res.send({ data: { result: result } });
+        })
+    },
+
+    editUserPage: function (req, res, next) {
+        users.getOne(req.params.id)
+            .then(function (result) {
+                console.log(result)
+                res.render(CONTROLLER_NAME + '/edit-user-page', { data: { user: result } });
+            });
+    },
+    
+    updateUser: function (req, res, next) {
+        console.log('started updating');
+        users.update(req.body)
+            .then(function name(result) {
+                console.log('finished updating');
+                res.redirect('/admin-panel');
+            });
     },
     
     postRegister: function (req, res, next) {
@@ -17,12 +43,12 @@ module.exports = {
             res.redirect('/register');
         }
         else {
-            
+
             console.log(newUserData);
             newUserData.salt = encryption.generateSalt();
-            
+
             newUserData.hashPass = encryption.generateHashedPassword(newUserData.salt, newUserData.password);
-            users.create(newUserData, function(err, user) {
+            users.create(newUserData, function (err, user) {
                 if (err) {
                     console.log(err);
                     if (err.code === 11000) {

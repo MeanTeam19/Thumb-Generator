@@ -22,6 +22,7 @@ module.exports = {
         else {
             newUserData.salt = encryption.generateSalt();
             newUserData.hashPass = encryption.generateHashedPassword(newUserData.salt, newUserData.password);
+            newUserData.registrationDate = new Date();
             users.create(newUserData, function(err, user) {
                 if (err) {
                     console.log(err);

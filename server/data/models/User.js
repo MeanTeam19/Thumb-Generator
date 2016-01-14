@@ -51,7 +51,8 @@
                     return !birthDateRegex.test(val);
                 }
             },
-            sex: Boolean,
+            registrationDate: Date,
+            sex: String,
             friends: [],
             posts: [{
                 post: {
