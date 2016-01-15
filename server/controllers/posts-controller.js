@@ -9,19 +9,20 @@ module.exports = {
             if (err) {
                 console.log(err);
             }
-            
+
             console.log(user)
             console.log(user.posts);
-            
+
             var userPosts = user.posts;
             userPosts.push(post);
-           
-            
-            user.update({posts: userPosts}, function(err) {
-                if(err) {
+
+            user.update({ posts: userPosts }, function (err) {
+                if (err) {
                     console.log(err);
                 }
             })
+
+            res.render('profile/profile',{currentUser: user});
         })
     }
 };
